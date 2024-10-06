@@ -1,0 +1,46 @@
+<div ngSkipHydration>
+<div class="container">
+    <div>
+    <h2>Ajouter un livre :</h2>
+</div>
+<form >
+ 
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >l'id</label>
+    <input type="number" [(ngModel)]= "newlivre.idlivre"
+    name="idlivre" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >titre</label>
+    <input type="text" [(ngModel)]="newlivre.titre"
+    name="titre" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >auteur</label>
+    <input type="text"[(ngModel)]= "newlivre.auteur"
+    name="nomProduit" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >nbre des pages</label>
+    <input type="number" [(ngModel)]= "newlivre.nbpages"
+    name="nbpages" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >genre</label>
+        <input type="text"[(ngModel)]= "newlivre.genre"
+        name="genre" class="form-control">
+     </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Date publication</label>
+    <input type="date" [(ngModel)]= "newlivre.datepublication"
+    name="dateCreation" class="form-control">
+    </div>
+    <div class="mt-2">
+    <button type="submit" (click)="addlivre()"class="btn btn-success">Ajouter</button>
+    <div>
+        <h3>{{message}}</h3>
+      </div>
+    </div>
+    </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!--update-livre works!-->
+<div class="container">
+    <div>
+    <h2>Modifier un livre :</h2>
+    </div>
+    <form >
+    <div hidden  class="col-sm-2 col-md-2 col-lg-2">
+    <label >ID du livre</label>
+    <input readonly type="text" [(ngModel)]="currentlivre.idlivre"
+    name="idlivre" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >titre</label>
+    <input type="text"[(ngModel)]= "currentlivre.titre"
+    name="titre" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >auteur</label>
+    <input type="text" [(ngModel)]= "currentlivre.auteur"
+    name="auteur" class="form-control">
+    </div>
+
+<div class="col-sm-2 col-md-2 col-lg-2">
+<label >nbpages</label>
+<input type="number" [(ngModel)]= "currentlivre.nbpages"
+name="nbpages" class="form-control">
+</div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >genre</label>
+        <input type="text" [(ngModel)]= "currentlivre.genre"
+        name="genre" class="form-control">
+        </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >date de publication</label>
+        <input type="date" [ngModel]="currentlivre.datepublication | date: 'yyyy-MM-dd'"
+        (ngModelChange)=" currentlivre.datepublication= $event" name="datepublication"
+         class="form-control">
+        </div>
+        <div class="mt-2">
+        <button type="submit" (click)="updatelivre()" class="btn btn-success">Modifer</button>
+        </div>
+        </form>
+        </div>
+        
