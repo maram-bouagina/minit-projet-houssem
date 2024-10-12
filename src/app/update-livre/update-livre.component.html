@@ -25,17 +25,22 @@
 <input type="number" [(ngModel)]= "currentlivre.nbpages"
 name="nbpages" class="form-control">
 </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-        <label >genre</label>
-        <input type="text" [(ngModel)]= "currentlivre.genre"
-        name="genre" class="form-control">
-        </div>
+   
     <div class="col-sm-4 col-md-4 col-lg-4">
         <label >date de publication</label>
         <input type="date" [ngModel]="currentlivre.datepublication | date: 'yyyy-MM-dd'"
         (ngModelChange)=" currentlivre.datepublication= $event" name="datepublication"
          class="form-control">
         </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label >genre</label>
+            <select class="form-control form-control-lg" id="idgenre" name="idgenre"
+            [(ngModel)]="updatedgenId">
+            <option *ngFor="let gen of genres" [value]="gen.idgenre" >
+            {{gen.nomgenre}}
+            </option>
+            </select>
+            </div>
         <div class="mt-2">
         <button type="submit" (click)="updatelivre()" class="btn btn-success">Modifer</button>
         </div>

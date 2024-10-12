@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Livre } from './model/livre.model';
+import { Genre } from './model/genre.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,15 @@ import { Livre } from './model/livre.model';
 export class LivreService {
  livres : Livre[];
  livre! : Livre;
+ genres! : Genre[];
+
   constructor() {
+    this.genres = [ {idgenre : 1, nomgenre : "historical fiction"},
+      {idgenre : 2, nomgenre : "literary fiction"}];
     this.livres = [
-      {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503, genre : "fantasy" ,  datepublication : new Date("05/08/2003")},
-      {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498, genre :"fantasy", datepublication : new Date("05/05/2015")},
-      {idlivre : 3,titre :"fourth wing", auteur : "REBBECA YARROS", nbpages : 419, genre : "fantasy-romance", datepublication : new Date("02/05/2023")}
-      
+      {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503 ,  datepublication : new Date("05/08/2003"),genre : {idgenre: 1, nomgenre : "fantasy"}},
+      {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498, datepublication : new Date("05/05/2015"),genre : {idgenre : 2, nomgenre : "fantasy-romance"}},
+      {idlivre : 3,titre :"fourth wing", auteur : "REBBECA YARROS", nbpages : 419, datepublication : new Date("02/05/2023"),genre: {idgenre : 1, nomgenre : "fantasy-romance"}}
        ];
     }
   listelivres():Livre[] {
@@ -61,5 +65,12 @@ export class LivreService {
     this.trierlivres();
 
     }
+    listegenres():Genre[] {
+      return this.genres;
+      }
+      consultergenre(id:number): Genre{ 
+      return this.genres.find(gen => gen.idgenre == id)!;
+      }
+      
     
 }

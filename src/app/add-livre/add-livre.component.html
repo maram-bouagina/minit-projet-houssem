@@ -25,22 +25,28 @@
     <input type="number" [(ngModel)]= "newlivre.nbpages"
     name="nbpages" class="form-control">
     </div>
-    <div class="col-sm-4 col-md-4 col-lg-4" >
-        <label >genre</label>
-        <input type="text"[(ngModel)]= "newlivre.genre"
-        name="genre" class="form-control">
-     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
     <label >Date publication</label>
     <input type="date" [(ngModel)]= "newlivre.datepublication"
     name="dateCreation" class="form-control">
     </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>genre</label>
+        <select class="form-control form-control-lg" id="idgenre" name="idgenre"
+        [(ngModel)]="newIdgenre">
+         <option *ngFor="let gen of genres" [value]="gen.idgenre" >
+         {{gen.nomgenre}}
+        </option>
+        </select>
     <div class="mt-2">
     <button type="submit" (click)="addlivre()"class="btn btn-success">Ajouter</button>
     <div>
         <h3>{{message}}</h3>
       </div>
     </div>
+
+     </div>
+        
     </form>
     </div>
 </div>
