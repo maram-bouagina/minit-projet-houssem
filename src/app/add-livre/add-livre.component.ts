@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Livre } from '../model/livre.model';
 import { LivreService } from '../livre.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Genre } from '../model/genre.model';
   selector: 'app-add-livre',
   templateUrl: './add-livre.component.html'
 })
-export class AddLivreComponent {
+export class AddLivreComponent implements OnInit  {
   message : string="";
   newlivre = new Livre();
   genres! :Genre[];
@@ -20,7 +20,7 @@ newgenre! :Genre;
     private router :Router
   ) { }
   
-  ngOnInit() {
+  ngOnInit() : void {
     this.genres = this.livreService.listegenres();
     }
   addlivre(){

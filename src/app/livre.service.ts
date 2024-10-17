@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { Livre } from './model/livre.model';
 import { Genre } from './model/genre.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 
 export class LivreService {
+ 
+
  livres : Livre[];
  livre! : Livre;
  genres! : Genre[];
+ livresRecherche!: Livre[];
 
   constructor() {
-    this.genres = [ {idgenre : 1, nomgenre : "historical fiction"},
-      {idgenre : 2, nomgenre : "literary fiction"}];
+    this.genres = [ {idgenre : 1, nomgenre : "fantasy"},
+      {idgenre : 2, nomgenre : "fantasy-romance"}];
     this.livres = [
       {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503 ,  datepublication : new Date("05/08/2003"),genre : {idgenre: 1, nomgenre : "fantasy"}},
       {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498, datepublication : new Date("05/05/2015"),genre : {idgenre : 2, nomgenre : "fantasy-romance"}},
@@ -24,6 +28,7 @@ export class LivreService {
   listelivres():Livre[] {
     return this.livres;
   }
+
   ajouterlivre( l: Livre){
   this.livres.push(l);
   }
@@ -71,6 +76,15 @@ export class LivreService {
       consultergenre(id:number): Genre{ 
       return this.genres.find(gen => gen.idgenre == id)!;
       }
-      
+      rechercherParCategorie(idgenre: number): Livre[]{ 
+        this.livresRecherche = []; 
+        this.livres.forEach((cur, index) => { 
+        if(idgenre == cur.genre.idgenre) { 
+        console.log("cur "+cur); 
+        this.livresRecherche.push(cur); 
+        } 
+        }); 
+        return this.livresRecherche; 
+        }
     
 }
