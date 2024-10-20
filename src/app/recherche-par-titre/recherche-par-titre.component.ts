@@ -18,7 +18,7 @@ export class RechercheParTitreComponent  implements OnInit {
     }
     onKeyUp(filterText : string){
       this.livres = this.alllivres.filter(item =>
-      item.titre.toLowerCase().includes(filterText));
+      item.titre.toLowerCase().includes(filterText.toLowerCase()));
       }
       
 }

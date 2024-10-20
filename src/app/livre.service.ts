@@ -76,7 +76,7 @@ export class LivreService {
       consultergenre(id:number): Genre{ 
       return this.genres.find(gen => gen.idgenre == id)!;
       }
-      rechercherParCategorie(idgenre: number): Livre[]{ 
+      rechercherParGenre(idgenre: number): Livre[]{ 
         this.livresRecherche = []; 
         this.livres.forEach((cur, index) => { 
         if(idgenre == cur.genre.idgenre) { 

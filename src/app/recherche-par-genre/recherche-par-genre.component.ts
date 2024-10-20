@@ -17,7 +17,7 @@ genres! : Genre[];
     this.livres=[];
   }
   onChange() { 
-    this.livres= this.livreService.rechercherParCategorie(this.Idgenre); }
+    this.livres= this.livreService.rechercherParGenre(this.Idgenre); }
      
     supprimerLivre(l: Livre)
     {
