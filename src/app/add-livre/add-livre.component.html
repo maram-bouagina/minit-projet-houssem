@@ -1,52 +1,121 @@
 <div ngSkipHydration>
-<div class="container">
-    <div>
-    <h2>Ajouter un livre :</h2>
-</div>
-<form >
- 
-    <div class="col-sm-2 col-md-2 col-lg-2">
-    <label >l'id</label>
-    <input type="number" [(ngModel)]= "newlivre.idlivre"
-    name="idlivre" class="form-control">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-    <label >titre</label>
-    <input type="text" [(ngModel)]="newlivre.titre"
-    name="titre" class="form-control">
-    </div>
-    <div class="col-sm-4 col-md-4 col-lg-4" >
-    <label >auteur</label>
-    <input type="text"[(ngModel)]= "newlivre.auteur"
-    name="nomProduit" class="form-control">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-    <label >nbre des pages</label>
-    <input type="number" [(ngModel)]= "newlivre.nbpages"
-    name="nbpages" class="form-control">
-    </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-    <label >Date publication</label>
-    <input type="date" [(ngModel)]= "newlivre.datepublication"
-    name="dateCreation" class="form-control">
-    </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-        <label>genre</label>
-        <select class="form-control form-control-lg" id="idgenre" name="idgenre"
-        [(ngModel)]="newIdgenre">
-         <option *ngFor="let gen of genres" [value]="gen.idgenre" >
-         {{gen.nomgenre}}
-        </option>
-        </select>
-    <div class="mt-2">
-    <button type="submit" (click)="addlivre()"class="btn btn-success">Ajouter</button>
-    <div>
-        <h3>{{message}}</h3>
-      </div>
-    </div>
+    <div class="container">
+        <div>
+            <h2>Ajouter un livre :</h2>
+        </div>
+        <form>
+            <div class="container mt-5">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-4">
+                        <form [formGroup]="myForm">
+                            <div class="alert alert-danger" *ngIf="err">
+                                <strong>{{err}}</strong>
+                            </div>
 
-     </div>
-        
-    </form>
+                            <div class="form-group">
+                                <label>Nom Lecteur :</label>
+                                <input type="text" name="readername" class="formcontrol" formControlName="readername"
+                                    [(ngModel)]="lecteur.readername">
+                            </div>
+                            <span
+                                *ngIf="myForm.controls['readername'].hasError('required')&& myForm.controls['readername'].touched"
+                                class="text-danger">
+                                Nom Lecteur est obligatoire
+                            </span>
+                            <div class="form-group">
+                                <label>email :</label>
+                                <input type="text" name="email" class="form-control" formControlName="email"
+                                    [(ngModel)]="lecteur.email">
+                            </div>
+                            <span
+                                *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched"
+                                class="text-danger">
+                                email est obligatoire
+                            </span>
+                            <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched"
+                                class="text-danger">
+                                email non valide
+                            </span>
+                            <div class="form-group">
+                                <label>Mot de passe :</label>
+                                <input type="password" name="password" formControlName="password"
+                                    [(ngModel)]="lecteur.password" class="form-control">
+                            </div>
+                            <span *ngIf="myForm.controls['password'].hasError('required')&&
+        myForm.controls['password'].touched" class="text-danger">
+                                mot de passe est obligatoire
+                            </span>
+                            <span *ngIf="myForm.controls['password'].hasError('minlength')&&
+        myForm.controls['password'].touched" class="text-danger">
+                                mot de passe doit contenir au moins 6 caractères
+                            </span>
+                            <div class="form-group">
+                                <label>Confirmer Mot de passe :</label>
+                                <input type="password" name="confirmPassword" formControlName="confirmPassword"
+                                    class="form-control">
+                            </div>
+                            <span
+                                *ngIf="myForm.controls['confirmPassword'].hasError('required')&& myForm.controls['confirmPassword'].touched"
+                                class="text-danger">
+                                confirmer mot de passe est obligatoire
+                            </span>
+                            <div>
+                                <span *ngIf="myForm.get('confirmPassword')?.touched &&
+    myForm.get('confirmPassword')?.value != myForm.get('password')?.value" class="text-danger">
+                                    Le mot de passe confrmé ne correspond pas au mot de passe tapé
+                                </span>
+                            </div>
+
+                            <div *ngIf="loading==true" class="d-flex justify-content-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+
+                            <button type="button" [disabled]="myForm.invalid" class="btn btn-success"
+                                (click)="onRegister()">S'insrire</button>
+                            <p>vous avez un compte? <a routerLink="/login">se connecter </a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>l'id</label>
+                <input type="number" [(ngModel)]="newlivre.idlivre" name="idlivre" class="form-control">
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>titre</label>
+                <input type="text" [(ngModel)]="newlivre.titre" name="titre" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>auteur</label>
+                <input type="text" [(ngModel)]="newlivre.auteur" name="nomLivre" class="form-control">
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>nbre des pages</label>
+                <input type="number" [(ngModel)]="newlivre.nbpages" name="nbpages" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>Date publication</label>
+                <input type="date" [(ngModel)]="newlivre.datepublication" name="dateCreation" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label>genre</label>
+                <select class="form-control form-control-lg" id="idgenre" name="idgenre" [(ngModel)]="newIdgenre">
+                    <option *ngFor="let gen of genres" [value]="gen.idgenre">
+                        {{gen.nomgenre}}
+                    </option>
+                </select>
+                <div class="mt-2">
+                    <button type="submit" (click)="addlivre()" class="btn btn-success">Ajouter</button>
+                    <div>
+                        <h3>{{message}}</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
     </div>
 </div>
