@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Livre } from '../model/livre.model';
 import { LivreService } from '../livre.service';
 
@@ -6,7 +6,7 @@ import { LivreService } from '../livre.service';
   selector: 'app-livres',
   templateUrl: './livres.component.html'
 })
-export class LivresComponent {
+export class LivresComponent implements OnInit {
  livres : Livre[];
   constructor(private livreService: LivreService) {
    /*this.livres = [
@@ -16,14 +16,20 @@ export class LivresComponent {
        ];*/
        this.livres = livreService.listelivres();
     }
+    ngOnInit() {
+  
+    }
+  
     supprimerLivre(l: Livre)
       {
       //console.log(l);
       let conf = confirm("Etes-vous sûr ?");
-      if (conf)
+      if (conf){
 
       this.livreService.supprimerLivre(l);
+    //this.livres = this.livreService.listelivres();}
 
       }
 
     }
+  }

@@ -4,7 +4,7 @@ import { LivreService } from '../livre.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from '../model/genre.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Lecteur } from '../model/lecteur.model';
+
 
 @Component({
   selector: 'app-update-livre',
@@ -19,13 +19,9 @@ export class UpdateLivreComponent implements OnInit{
 
 
       
-public lecteur = new Lecteur();
-
-confirmPassword?:string;
 
 myForm!: FormGroup;
 
-err!:any;
 loading : boolean = false;
       constructor(private activatedRoute: ActivatedRoute,
         private router :Router,
@@ -34,27 +30,34 @@ loading : boolean = false;
       ngOnInit() {
           // console.log(this.route.snapshot.params.id);
           this.genres = this.livreService.listegenres();
-          this.currentlivre = this.livreService.consulterlivre(this.activatedRoute.snapshot. params['idlivre']);
+          this.currentlivre = this.livreService.consulterlivre(this.activatedRoute.snapshot.params['idlivre']);
           console.log(this.currentlivre);
           this.updatedgenId=this.currentlivre.genre.idgenre;
 
-
           this.myForm = this.formBuilder.group({
-
-            readername : ['', [Validators.required]],
-            email : ['', [Validators.required, Validators.email]],
-            password : ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword : ['', [Validators.required]]
-            } );
-      }
+            idlivre: [this.currentlivre.idlivre, [Validators.required]],
+            titre: [this.currentlivre.titre, [Validators.required, Validators.minLength(6)]],
+            auteur: [this.currentlivre.auteur, [Validators.required, Validators.minLength(6)]],
+            nbpages: [this.currentlivre.nbpages, [Validators.required]],
+            email: [this.currentlivre.email, [Validators.email, Validators.required]],
+            datepublication: [this.currentlivre.datepublication, [Validators.required]],
+            idgenre: [this.currentlivre.genre.idgenre, [Validators.required]]
+        });
+    }
+      
       updatelivre(){
         //console.log(this.currentlivre);
+ /*         this.currentlivre.idlivre = this.myForm.value.idlivre;
+        this.currentlivre.titre = this.myForm.value.titre;
+        this.currentlivre.auteur = this.myForm.value.auteur;
+        this.currentlivre.nbpages = this.myForm.value.nbpages; 
+        this.currentlivre.email = this.myForm.value.email;
+        this.currentlivre.datepublication = this.myForm.value.datepublication; */
+        this.currentlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
+ 
           this.livreService.updatelivre(this.currentlivre);
           this.router.navigate(['livres']);
           this.currentlivre.genre=this.livreService.consultergenre(this.updatedgenId);
     
       } 
-      onRegister(){
-        console.log(this.lecteur);
-      }   
  }

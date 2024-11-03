@@ -20,9 +20,9 @@ export class LivreService {
     this.genres = [ {idgenre : 1, nomgenre : "fantasy"},
       {idgenre : 2, nomgenre : "fantasy-romance"}];
     this.livres = [
-      {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503 ,  datepublication : new Date("05/08/2003"),genre : {idgenre: 1, nomgenre : "fantasy"}},
-      {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498, datepublication : new Date("05/05/2015"),genre : {idgenre : 2, nomgenre : "fantasy-romance"}},
-      {idlivre : 3,titre :"fourth wing", auteur : "REBBECA YARROS", nbpages : 419, datepublication : new Date("02/05/2023"),genre: {idgenre : 1, nomgenre : "fantasy-romance"}}
+      {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503 , email:"johndoe@gmail.com" , datepublication : new Date("05/08/2003"),genre : {idgenre: 1, nomgenre : "fantasy"}},
+      {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498,email:"contact@protonmail.com",datepublication : new Date("05/05/2015"),genre : {idgenre : 2, nomgenre : "fantasy-romance"}},
+      {idlivre : 3,titre :"fourth wing", auteur : "REBBECA YARROS", nbpages : 419,email:"janedoe@yahoo.fr" ,datepublication : new Date("02/05/2023"),genre: {idgenre : 1, nomgenre : "fantasy-romance"}}
        ];
     }
   listelivres():Livre[] {
