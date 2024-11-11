@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     loggedUser=localStorage.getItem('loggedUser')??'';
     if (isloggedin!="true" || !loggedUser)
     this.router.navigate(['/login']);
-    else
+    else//test
     this.authService.setLoggedUserFromLocalStorage(loggedUser);
     }
     
