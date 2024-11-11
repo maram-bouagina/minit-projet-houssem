@@ -43,7 +43,7 @@ myForm!: FormGroup;
     this. newlivre.nbpages = this.myForm.value.nbpages; 
     this. newlivre.email = this.myForm.value.email;
     this. newlivre.datepublication = this.myForm.value.datepublication; */
-    this. newlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
+    //this. newlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
 
     this.newgenre=this.livreService.consultergenre(this.newIdgenre);
     this.newlivre.genre=this.newgenre;

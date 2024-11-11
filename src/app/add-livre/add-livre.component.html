@@ -77,7 +77,7 @@
         </span>
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <label>genre</label>
-                <select class="form-control form-control-lg" id="idgenre"  [(ngModel)]="newlivre.genre" formControlName="idgenre">
+                <select class="form-control form-control-lg" id="idgenre"  [(ngModel)]="newIdgenre" formControlName="idgenre">
                     <option *ngFor="let gen of genres" [value]="gen.idgenre">
                         {{gen.nomgenre}}
                     </option>
