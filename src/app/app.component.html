@@ -36,7 +36,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a *ngIf="!authService.isloggedIn"class="dropdown-item"  routerLink="/login">Login</a>
-                    <a *ngIf="authService.isloggedIn"  class="dropdown-item" (click)="onLogout">Logout</a>
+                    <a *ngIf="authService.isloggedIn"  class="dropdown-item" routerLink="/login" (click)="onLogout">Logout</a>
                     <a   class="dropdown-item" href="#">Profile</a>
                 </div>
             </li>

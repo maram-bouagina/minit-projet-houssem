@@ -44,9 +44,9 @@ export class AuthService {
         this.roles = undefined!;
         localStorage.removeItem('loggedUser');
         localStorage.setItem('isloggedIn',String(this.isloggedIn));
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
         }
-  /*       setLoggedUserFromLocalStorage(login : string) {
+       /*setLoggedUserFromLocalStorage(login : string) {
           this.loggedUser = login;
           this.isloggedIn = true;
           this.getUserRoles(login);
