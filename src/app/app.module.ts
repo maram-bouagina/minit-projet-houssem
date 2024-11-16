@@ -12,6 +12,8 @@ import { RechercheParTitreComponent } from './recherche-par-titre/recherche-par-
 import { SearchFilterPipe } from './search-filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ListeGenresComponent } from './liste-genres/liste-genres.component';
+import { UpdateGenreComponent } from './update-genre/update-genre.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     RechercheParTitreComponent,
     SearchFilterPipe,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ListeGenresComponent,
+    UpdateGenreComponent
   ],
   imports: [
     BrowserModule,

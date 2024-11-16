@@ -18,7 +18,10 @@ export class LivreService {
 
   constructor() {
     this.genres = [ {idgenre : 1, nomgenre : "fantasy"},
-      {idgenre : 2, nomgenre : "fantasy-romance"}];
+      {idgenre : 2, nomgenre : "fantasy-romance"},
+      {idgenre : 3, nomgenre : "historical fiction"},
+      {idgenre : 4, nomgenre : "literary fiction"},
+      {idgenre : 5, nomgenre : "horror"}];
     this.livres = [
       {idlivre : 1,titre : "Eragon", auteur :"Christopher Paolini", nbpages :503 , email:"johndoe@gmail.com" , datepublication : new Date("05/08/2003"),genre : {idgenre: 1, nomgenre : "fantasy"}},
       {idlivre : 2,titre :"ACOTAR", auteur : "SARAHj.MAAS",nbpages : 498,email:"contact@protonmail.com",datepublication : new Date("05/05/2015"),genre : {idgenre : 2, nomgenre : "fantasy-romance"}},
@@ -86,6 +89,18 @@ export class LivreService {
         }); 
         return this.livresRecherche; 
         }
+      /*   ajoutergenre( gen: Genre){
+          this.genres.push(gen);
+          }
+      */
+          ajoutergenre(gen: Genre): Genre {
+            const id = this.genres.length +1
+            gen.idgenre=id;
+            this.genres.push({...gen}); // ... pour faire un copie de objet cat
+            return gen;
+          }
+    
+          
         
     
 }

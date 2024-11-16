@@ -8,6 +8,7 @@ import { RechercheParTitreComponent } from './recherche-par-titre/recherche-par-
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ProduitGuard } from './livre.guard';
+import { ListeGenresComponent } from './liste-genres/liste-genres.component';
 const routes: Routes = [
   {path: "livres", component : LivresComponent},
   {path: "add-livre", component : AddLivreComponent,canActivate:[ProduitGuard]},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "rechercheParTitre", component :RechercheParTitreComponent},
   {path: "login", component: LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},
+  {path: "listegenres", component : ListeGenresComponent},
   { path: "", redirectTo: "livres", pathMatch: "full" }
 ];
 
