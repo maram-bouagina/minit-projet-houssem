@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Livre } from './model/livre.model';
 import { Genre } from './model/genre.model';
+import { GenreWrapper } from './model/genrewrapped.model';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+  };
 @Injectable({
   providedIn: 'root'
 })
 
 
 export class LivreService {
- 
+  apiURLGen: string = 'http://localhost:8081/livres/gen';
+
 
  livres : Livre[];
  livre! : Livre;
  genres! : Genre[];
  livresRecherche!: Livre[];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.genres = [ {idgenre : 1, nomgenre : "fantasy"},
       {idgenre : 2, nomgenre : "fantasy-romance"},
       {idgenre : 3, nomgenre : "historical fiction"},
@@ -73,9 +79,13 @@ export class LivreService {
     this.trierlivres();
 
     }
-    listegenres():Genre[] {
+ /*    listegenres():Genre[] {
       return this.genres;
-      }
+      } */
+      listeGenres():Observable<GenreWrapper>{
+        return this.http.get<GenreWrapper>(this.apiURLGen);
+        }
+        
       consultergenre(id:number): Genre{ 
       return this.genres.find(gen => gen.idgenre == id)!;
       }

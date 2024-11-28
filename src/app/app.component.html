@@ -20,11 +20,11 @@
                     Livres
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item"  *ngIf="authService.isAdmin()"  routerLink="/add-livre">Ajouter</a>
+                    <a class="dropdown-item"  *ngIf="authService.isAdmin()"  routerLink="add-livre">Ajouter</a>
                     <a class="dropdown-item" href="#">Lister</a>
                     <a class="dropdown-item" routerLink="/rechercheParGenre" >Recherche Par  genre</a>
                     <a class="dropdown-item" routerLink="/rechercheParTitre" >Recherche Partitre</a>
-                    <a class="dropdown-item" routerLink="/listegenres" >Gestion des catégories</a>
+                    <a class="dropdown-item" routerLink="/listegenres" >Gestion des genres</a>
                 </div>
             </li>
         </ul>
@@ -32,7 +32,7 @@
             <li> <a class="nav-link">{{authService.loggedUser}}</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    [username]
+                    connexion
                 </a>
                 <div class="dropdown-menu">
                     <a *ngIf="!authService.isloggedIn"class="dropdown-item"  routerLink="/login">Login</a>

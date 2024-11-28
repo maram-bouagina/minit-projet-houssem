@@ -22,7 +22,15 @@ myForm!: FormGroup;
   ) { }
   
   ngOnInit() : void {
-    this.genres = this.livreService.listegenres();
+    //this.genres = this.livreService.listegenres();
+   
+      this.livreService.listeGenres().
+      subscribe(gens => {console.log(gens);
+      this.genres = gens._embedded.genres;
+      }
+      );
+      
+      
     this.myForm = this.formBuilder.group({
 
       idlivre : ['', [Validators.required]],

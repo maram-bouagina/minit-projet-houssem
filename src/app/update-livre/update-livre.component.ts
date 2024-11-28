@@ -29,7 +29,16 @@ loading : boolean = false;
 
       ngOnInit() {
           // console.log(this.route.snapshot.params.id);
-          this.genres = this.livreService.listegenres();
+
+          //this.genres = this.livreService.listegenres();
+          this.livreService.listeGenres().
+          subscribe(cats => {console.log(cats);
+          this.genres = cats._embedded.genres;
+          }
+          );
+
+
+
           this.currentlivre = this.livreService.consulterlivre(this.activatedRoute.snapshot.params['idlivre']);
           console.log(this.currentlivre);
           this.updatedgenId=this.currentlivre.genre.idgenre;

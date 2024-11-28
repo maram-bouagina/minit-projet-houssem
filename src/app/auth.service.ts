@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   users: User[] = [{"username":"admin","password":"123","roles":['ADMIN']},
-  {"username":"Ali","password":"456","roles":['USER']} ];
+  {"username":"maram","password":"456","roles":['USER']} ];
   public loggedUser!:string;
   public isloggedIn: Boolean = false;
   public roles!:string[];
