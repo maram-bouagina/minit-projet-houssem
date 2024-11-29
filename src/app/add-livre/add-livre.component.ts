@@ -24,11 +24,15 @@ myForm!: FormGroup;
   ngOnInit() : void {
     //this.genres = this.livreService.listegenres();
    
-      this.livreService.listeGenres().
+      /*this.livreService.listeGenres().
       subscribe(gens => {console.log(gens);
       this.genres = gens._embedded.genres;
       }
-      );
+      );*/
+      this.livreService.listegenres().
+          subscribe(gens => {this.genres = gens;
+            console.log(gens);
+        });
       
       
     this.myForm = this.formBuilder.group({
@@ -53,9 +57,17 @@ myForm!: FormGroup;
     this. newlivre.datepublication = this.myForm.value.datepublication; */
     //this. newlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
 
-    this.newgenre=this.livreService.consultergenre(this.newIdgenre);
-    this.newlivre.genre=this.newgenre;
-    this.livreService.ajouterlivre(this.newlivre);
+    //this.newgenre=this.livreService.consultergenre(this.newIdgenre);
+    //this.newlivre.genre=this.newgenre;
+
+    this.newlivre.genre = this.genres.find(gen=> gen.idgenre == this.newIdgenre)!;
+    //this.livreService.ajouterlivre(this.newlivre);
+    this.newlivre.genre = this.genres.find(gen => gen.idgenre == this.newIdgenre)!;
+    this.livreService.ajouterlivre(this.newlivre)
+                      .subscribe(liv => {
+                      console.log(liv);
+                      this.router.navigate(['produits']);
+                      }); 
     this.message="Livre"+this.newlivre.titre+" est ajouté avec succès!";
     this.router.navigate(['livres']);
     }

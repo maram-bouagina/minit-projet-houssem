@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LivresComponent } from './livres/livres.component';
@@ -14,10 +13,9 @@ import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ListeGenresComponent } from './liste-genres/liste-genres.component';
 import { UpdateGenreComponent } from './update-genre/update-genre.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
-    HttpClientModule,
     AppComponent,
     LivresComponent,
     AddLivreComponent,
@@ -34,7 +32,8 @@ import { UpdateGenreComponent } from './update-genre/update-genre.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

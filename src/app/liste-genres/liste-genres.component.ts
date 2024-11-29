@@ -17,17 +17,24 @@ export class ListeGenresComponent implements OnInit {
 
  ngOnInit(): void {
  
-  this.genres = this.livreService.listegenres();
-  console.log(this.genres);
+  /*this.genres = this.livreService.listegenres();
+  console.log(this.genres);*/
+  this.chargergenres();
 }
 chargergenres(){
-  this.genres=this.livreService.listegenres();
-  console.log(this.genres);
+  /*this.genres=this.livreService.listegenres();
+  console.log(this.genres);*/
+  this.livreService.listegenres().
+  subscribe(gens => {this.genres = gens._embedded.categories;
+  console.log(gens);
+  });
   }
 genreUpdated(gen:Genre){
         console.log("genre reçu de genreUpdated",gen);
-        this.livreService.ajoutergenre(gen);
-        this.chargergenres();
+        /*this.livreService.ajoutergenre(gen);
+        this.chargergenres();*/
+        this.livreService.ajoutergenre(gen).subscribe( ()=> this.chargergenres());
+
 } 
 updategen(gen:Genre) {
   this.updatedGen=gen;

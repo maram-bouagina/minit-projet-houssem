@@ -20,15 +20,21 @@ export class LivresComponent implements OnInit {
     ngOnInit() {
   
     }
-  
+    chargerlivres(){
+      this.livreService.listelivres().subscribe(livs => {
+        console.log(livs);
+        this.livres = livs;
+        });
+    }
     supprimerLivre(l: Livre)
       {
       //console.log(l);
       let conf = confirm("Etes-vous sûr ?");
       if (conf){
 
-      this.livreService.supprimerLivre(l);
-    //this.livres = this.livreService.listelivres();}
+      //this.livreService.supprimerLivre(l);
+      this.chargerlivres(); 
+    //this.livres = this.livreService.listelivres();}mtnahich comment
 
       }
 

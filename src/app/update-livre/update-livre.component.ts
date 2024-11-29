@@ -31,17 +31,28 @@ loading : boolean = false;
           // console.log(this.route.snapshot.params.id);
 
           //this.genres = this.livreService.listegenres();
-          this.livreService.listeGenres().
+        
+          /* this.livreService.listeGenres().
           subscribe(cats => {console.log(cats);
           this.genres = cats._embedded.genres;
           }
-          );
+          );*/
+
+          this.livreService.listegenres().
+    subscribe(gens => {this.genres = gens;
+    console.log(gens);
+    });
 
 
 
-          this.currentlivre = this.livreService.consulterlivre(this.activatedRoute.snapshot.params['idlivre']);
-          console.log(this.currentlivre);
-          this.updatedgenId=this.currentlivre.genre.idgenre;
+         /* this.currentlivre = this.livreService.consulterlivre(this.activatedRoute.snapshot.params['idlivre']);
+          console.log(this.currentlivre);*/
+          this.livreService.consulterlivre(this.activatedRoute.snapshot.params['id'])
+          .subscribe(liv => {
+            this.currentlivre = liv; 
+            this.updatedgenId = this.currentlivre.genre.idgenre;  
+          });
+        
 
           this.myForm = this.formBuilder.group({
             idlivre: [this.currentlivre.idlivre, [Validators.required]],
@@ -56,17 +67,16 @@ loading : boolean = false;
       
       updatelivre(){
         //console.log(this.currentlivre);
- /*         this.currentlivre.idlivre = this.myForm.value.idlivre;
-        this.currentlivre.titre = this.myForm.value.titre;
-        this.currentlivre.auteur = this.myForm.value.auteur;
-        this.currentlivre.nbpages = this.myForm.value.nbpages; 
-        this.currentlivre.email = this.myForm.value.email;
-        this.currentlivre.datepublication = this.myForm.value.datepublication; */
-        this.currentlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
+
+        /*this.currentlivre.genre = this.livreService.consultergenre(this.myForm.value.idgenre);
  
           this.livreService.updatelivre(this.currentlivre);
           this.router.navigate(['livres']);
-          this.currentlivre.genre=this.livreService.consultergenre(this.updatedgenId);
+          this.currentlivre.genre=this.livreService.consultergenre(this.updatedgenId);*/
+          this.currentlivre.genre = this.genres.find(cat => cat.idgenre == this.updatedgenId)!;
+          this.livreService.updatelivre(this.currentlivre).subscribe(liv=> {
+       this.router.navigate(['livres']); }
+       );
     
       } 
  }
